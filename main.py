@@ -13,6 +13,7 @@ MONTH = today.month
 YEAR = today.year
 WEEKDAY = today.weekday() #monday is 0 and sunday is 6
 
+submit_more_message = "Add more reminders by committing code to https://github.com/jsa3qy/hopkinsserver"
 
 def main(emails):
 
@@ -24,14 +25,17 @@ def main(emails):
     output_list = []
     for func in func_list:
         output_list = appendOrNot(output_list, func())
+
+    #do not change these strings -- necessary for ssmtp messaging in bash
     print("To: " + emails)
-    print("From: jessealloy@gmail.com")
-    print("Subject: Daily Reminders")
+    print("From: hopkinshouse1406@gmail.com")
+    print("Subject: " + str(DATE.date()) + " Daily Reminders")
     if len(output_list):
         for reminder in output_list:
-            print(reminder + "\n")
+            print(reminder + "\n\n")
     else:
-        print("No Daily Reminders!")
+        print("No Daily Reminders! \n\n")
+    print(submit_more_message)
 
 # helpers
 def appendOrNot(curList, func_output):
@@ -46,7 +50,7 @@ def sendRentReminder():
     return False
 
 def sendTrashReminder():
-    if WEEKDAY == 1:
+    if WEEKDAY == 0:
         return "Yo yo throw that trash out to the curb!"
     elif WEEKDAY == 3:
         return "ayeee we got trash ~and~ recycling to put out"
