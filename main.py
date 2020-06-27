@@ -19,7 +19,8 @@ def main(emails):
 
     func_list = [
         sendRentReminder,
-        sendTrashReminder
+        sendTrashReminder,
+        plantWateringReminder
     ]
 
     output_list = []
@@ -55,6 +56,9 @@ def sendTrashReminder():
     elif WEEKDAY == 3:
         return "ayeee we got trash ~and~ recycling to put out"
     return False
+
+def plantWateringReminder():
+    return "Adi! plant watering reminder -- there's two in the bathroom and 9 by my bed window. The succulent is the only one that foesnt need watering. tyty"
 
 
 
