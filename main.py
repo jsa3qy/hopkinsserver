@@ -1,6 +1,7 @@
 import sys
 import datetime
 import pytz
+import yfinance as yf
 
 # date objects
 tz_NY = pytz.timezone('America/New_York')
@@ -20,7 +21,7 @@ def main(emails):
     func_list = [
         sendRentReminder,
         sendTrashReminder,
-        plantWateringReminder
+        returnStockTickers
     ]
 
     output_list = []
@@ -57,8 +58,16 @@ def sendTrashReminder():
         return "ayeee we got trash ~and~ recycling to put out"
     return False
 
-def plantWateringReminder():
-    return "Adi! plant watering reminder -- there's two in the bathroom and 9 by my bed window. The succulent is the only one that foesnt need watering. tyty"
+def returnStockTickers():
+    if WEEKDAY < 5:
+        tickers = yf.Tickers("YEXT FCN ACN")
+        finalString = "How did ye ole house do on the market today? \n\n" + str(tickers.history(period="1d"))
+        return finalString
+    else:
+        return False
+
+
+
 
 
 
